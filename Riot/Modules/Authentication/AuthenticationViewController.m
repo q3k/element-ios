@@ -566,11 +566,10 @@
          didLoginWithLoginResponse:(MXLoginResponse *)loginResponse
 {
     [authFallBackViewController dismissViewControllerAnimated:YES completion:^{
-        
-        MXCredentials *credentials = [[MXCredentials alloc] initWithLoginResponse:loginResponse andDefaultCredentials:nil];
+        MXRestClient *restClient = [self authInputsViewThirdPartyIdValidationRestClient:nil];
+        MXCredentials *credentials = [[MXCredentials alloc] initWithLoginResponse:loginResponse andDefaultCredentials:restClient.credentials];
         [self onSuccessfulLogin:credentials];
     }];
-
     authFallBackViewController = nil;
 }
 
